@@ -21,7 +21,7 @@ tailwind.config = {
 
   <!-- HEADER -->
   <div class="text-center mb-6">
-    <h1 class="text-4xl font-bold text-gray-800 dark:text-white">💎 EMI Calculator</h1>
+    <h1 class="text-6xl font-bold text-gray-800 dark:text-white">💎 EMI Calculator</h1>
     <p class="text-sm text-gray-500">Premium Finance Tool</p>
   </div>
 
@@ -32,31 +32,31 @@ tailwind.config = {
 
       <!-- INPUT STYLE -->
       <div>
-        <label class="text-sm font-medium text-gray-600 dark:text-gray-300">Price</label>
+        <label class="text-xl font-medium text-gray-600 dark:text-gray-300">Price</label>
         <input type="number" id="price" oninput="updateFinance()"
         class="w-full mt-1 p-3 rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-400 outline-none transition">
       </div>
 
       <div>
-        <label class="text-sm font-medium text-gray-600 dark:text-gray-300">Down Payment</label>
+        <label class="text-xl font-medium text-gray-600 dark:text-gray-300">Down Payment</label>
         <input type="number" id="downInput" oninput="updateFinance()"
         class="w-full mt-1 p-3 rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-400 outline-none">
       </div>
 
       <div>
-        <label class="text-sm font-medium text-gray-600 dark:text-gray-300">Finance</label>
+        <label class="text-xl font-medium text-gray-600 dark:text-gray-300">Finance</label>
         <input type="number" id="finance"
         class="w-full mt-1 p-3 rounded-xl bg-gray-200 dark:bg-gray-600 border border-gray-300 dark:border-gray-600">
       </div>
 
       <div>
-        <label class="text-sm font-medium text-gray-600 dark:text-gray-300">Add on Loan</label>
+        <label class="text-xl font-medium text-gray-600 dark:text-gray-300">Add on Loan</label>
         <input type="number" id="addon" value="1800" oninput="updateFinance()"
         class="w-full mt-1 p-3 rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600">
       </div>
 
       <div>
-        <label class="text-sm font-medium text-gray-600 dark:text-gray-300">Rate (%)</label>
+        <label class="text-xl font-medium text-gray-600 dark:text-gray-300">Rate (%)</label>
         <input type="number" id="rate" value="11.55" oninput="updateFinance()"
         class="w-full mt-1 p-3 rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600">
       </div>
@@ -67,14 +67,14 @@ tailwind.config = {
       </div>
 
       <div>
-        <label class="text-sm font-medium text-gray-600 dark:text-gray-300">Processing (%)</label>
+        <label class="text-xl font-medium text-gray-600 dark:text-gray-300">Processing (%)</label>
         <input type="number" id="processing" value="5" oninput="updateFinance()"
         class="w-full mt-1 p-3 rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600">
       </div>
 
       <div class="grid grid-cols-2 gap-3">
         <div>
-          <label class="text-sm text-gray-600 dark:text-gray-300">Doc</label>
+          <label class="text-xl text-gray-600 dark:text-gray-300">Doc</label>
           <input type="number" id="doc" value="1500" oninput="updateFinance()"
           class="w-full mt-1 p-3 rounded-xl bg-white/60 dark:bg-gray-700/60 border">
         </div>
