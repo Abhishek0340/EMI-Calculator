@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 
+<!-- FIX: Prevent zoom on mobile -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
 <!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 
@@ -15,50 +18,50 @@ tailwind.config = {
 <title>Premium EMI Calculator</title>
 </head>
 
-<body class="bg-gradient-to-br from-indigo-100 via-white to-purple-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 ">
+<body class="bg-gradient-to-br from-indigo-100 via-white to-purple-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-x-hidden">
 
-<div class="w-full mx-auto p-4">
+<div class="max-w-md mx-auto p-4">
 
   <!-- HEADER -->
   <div class="text-center mb-6">
-    <h1 class="text-6xl font-bold text-gray-800 dark:text-white">💎 EMI Calculator</h1>
-    <p class="text-sm text-gray-500">Premium Finance Tool</p>
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white">💎 EMI Calculator</h1>
+    <p class="text-base text-gray-500">Premium Finance Tool</p>
   </div>
 
   <!-- CARD -->
   <div class="backdrop-blur-lg bg-white/70 dark:bg-white/10 border border-white/30 dark:border-white/10 shadow-xl rounded-2xl p-5">
 
-    <div class="space-y-4">
+    <div class="space-y-5">
 
-      <!-- INPUT STYLE -->
+      <!-- INPUT -->
       <div>
-        <label class="text-3xl font-medium text-gray-600 dark:text-gray-300">Price</label>
+        <label class="text-lg font-semibold text-gray-700 dark:text-gray-300">Price</label>
         <input type="number" id="price" oninput="updateFinance()"
-        class="w-full mt-1 p-3 rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-400 outline-none transition">
+        class="w-full mt-2 p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-400 outline-none">
       </div>
 
       <div>
-        <label class="text-3xl font-medium text-gray-600 dark:text-gray-300">Down Payment</label>
+        <label class="text-lg font-semibold text-gray-700 dark:text-gray-300">Down Payment</label>
         <input type="number" id="downInput" oninput="updateFinance()"
-        class="w-full mt-1 p-3 rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-400 outline-none">
+        class="w-full mt-2 p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-400 outline-none">
       </div>
 
       <div>
-        <label class="text-3xl font-medium text-gray-600 dark:text-gray-300">Finance</label>
+        <label class="text-lg font-semibold text-gray-700 dark:text-gray-300">Finance</label>
         <input type="number" id="finance"
-        class="w-full mt-1 p-3 rounded-xl bg-gray-200 dark:bg-gray-600 border border-gray-300 dark:border-gray-600">
+        class="w-full mt-2 p-4 text-lg rounded-xl bg-gray-200 dark:bg-gray-600 border border-gray-300 dark:border-gray-600">
       </div>
 
       <div>
-        <label class="text-3xl font-medium text-gray-600 dark:text-gray-300">Add on Loan</label>
+        <label class="text-lg font-semibold text-gray-700 dark:text-gray-300">Add on Loan</label>
         <input type="number" id="addon" value="1800" oninput="updateFinance()"
-        class="w-full mt-1 p-3 rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600">
+        class="w-full mt-2 p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600">
       </div>
 
       <div>
-        <label class="text-3xl font-medium text-gray-600 dark:text-gray-300">Rate (%)</label>
+        <label class="text-lg font-semibold text-gray-700 dark:text-gray-300">Rate (%)</label>
         <input type="number" id="rate" value="11.55" oninput="updateFinance()"
-        class="w-full mt-1 p-3 rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600">
+        class="w-full mt-2 p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600">
       </div>
 
       <!-- Hidden -->
@@ -67,61 +70,61 @@ tailwind.config = {
       </div>
 
       <div>
-        <label class="text-xl font-medium text-gray-600 dark:text-gray-300">Processing (%)</label>
+        <label class="text-base font-medium text-gray-600 dark:text-gray-300">Processing (%)</label>
         <input type="number" id="processing" value="5" oninput="updateFinance()"
-        class="w-full mt-1 p-3 rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600">
+        class="w-full mt-2 p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border">
       </div>
 
       <div class="grid grid-cols-2 gap-3">
         <div>
-          <label class="text-xl text-gray-600 dark:text-gray-300">Doc</label>
+          <label class="text-base text-gray-600 dark:text-gray-300">Doc</label>
           <input type="number" id="doc" value="1500" oninput="updateFinance()"
-          class="w-full mt-1 p-3 rounded-xl bg-white/60 dark:bg-gray-700/60 border">
+          class="w-full mt-2 p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border">
         </div>
 
         <div>
-          <label class="text-sm text-gray-600 dark:text-gray-300">Stamp</label>
+          <label class="text-base text-gray-600 dark:text-gray-300">Stamp</label>
           <input type="number" id="stamp" value="200" oninput="updateFinance()"
-          class="w-full mt-1 p-3 rounded-xl bg-white/60 dark:bg-gray-700/60 border">
+          class="w-full mt-2 p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border">
         </div>
       </div>
 
       <div>
-        <label class="text-sm text-gray-600 dark:text-gray-300">Handling</label>
+        <label class="text-base text-gray-600 dark:text-gray-300">Handling</label>
         <input type="number" id="handling" value="0" oninput="updateFinance()"
-        class="w-full mt-1 p-3 rounded-xl bg-white/60 dark:bg-gray-700/60 border">
+        class="w-full mt-2 p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border">
       </div>
 
     </div>
 
     <!-- BUTTONS -->
-    <div class="flex gap-3 mt-5">
+    <div class="flex gap-3 mt-6">
       <button onclick="calculateAll()"
-      class="flex-1 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold shadow-lg hover:scale-105 transition">
+      class="flex-1 py-4 text-lg rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold shadow-lg">
         Calculate
       </button>
 
       <button onclick="resetForm()"
-      class="flex-1 py-3 rounded-xl bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold shadow-lg hover:scale-105 transition">
+      class="flex-1 py-4 text-lg rounded-xl bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold shadow-lg">
         Reset
       </button>
     </div>
 
     <!-- EXTRA -->
-    <div class="mt-5 p-4 rounded-xl bg-white/50 dark:bg-gray-700/50 border">
-      <div class="flex justify-between text-sm">
+    <div class="mt-6 p-4 rounded-xl bg-white/50 dark:bg-gray-700/50 border text-base">
+      <div class="flex justify-between">
         <span>A</span>
         <span>₹<span id="valA">0</span></span>
       </div>
 
-      <div class="flex justify-between text-sm mt-2">
+      <div class="flex justify-between mt-2">
         <span>B</span>
         <span>₹<span id="valB">0</span></span>
       </div>
     </div>
 
     <!-- RESULTS -->
-    <div class="grid gap-3 mt-5" id="tenureResults"></div>
+    <div class="grid gap-4 mt-6" id="tenureResults"></div>
 
   </div>
 </div>
@@ -174,7 +177,6 @@ function updateFinance() {
 }
 
 function calculateAll() {
-
   let tenures = [12, 18, 24, 30, 36, 60];
 
   let finance = +financeEl().value || 0;
@@ -184,7 +186,6 @@ function calculateAll() {
   let output = "";
 
   tenures.forEach(t => {
-
     let loanAmount = finance + addon;
 
     let interest = (loanAmount * rate * t) / (100 * 12);
@@ -192,205 +193,7 @@ function calculateAll() {
     let emi = total / t;
 
     output += `
-      <div class="p-4 rounded-xl bg-white/60 dark:bg-gray-700/60 border shadow text-center backdrop-blur">
-        <b>${t} Months</b><br>
-        EMI: ₹${emi.toFixed(0)} <br>
-        Interest: ₹${interest.toFixed(0)} <br>
-        Total: ₹${total.toFixed(0)}
-      </div>
-    `;
-  });
-
-  document.getElementById("tenureResults").innerHTML = output;
-}
-
-// helpers
-const priceEl = () => document.getElementById("price");
-const downEl = () => document.getElementById("downInput");
-const financeEl = () => document.getElementById("finance");
-const addonEl = () => document.getElementById("addon");
-const rateEl = () => document.getElementById("rate");
-const advEl = () => document.getElementById("advance");
-const procEl = () => document.getElementById("processing");
-const docEl = () => document.getElementById("doc");
-const stampEl = () => document.getElementById("stamp");
-const handEl = () => document.getElementById("handling");
-
-function resetForm() {
-  location.reload();
-}
-
-updateFinance();
-
-</script>
-
-</body>
-</html></div>
-
-<script>
-
-function updateFinance() {
-  let price = +priceEl().value || 0;
-  let userDown = +downEl().value || 0;
-
-  let addon = +addonEl().value || 0;
-  let rate = +rateEl().value || 0;
-  let advance = +advEl().value || 0;
-  let processing = +procEl().value || 0;
-  let doc = +docEl().value || 0;
-  let stamp = +stampEl().value || 0;
-  let handling = +handEl().value || 0;
-
-  let tenure = 12;
-  let finance = price;
-
-  for (let i = 0; i < 3; i++) {
-    let loanAmount = finance + addon;
-
-    let interest = (loanAmount * rate * tenure) / (100 * 12);
-    let emi = (loanAmount + interest) / tenure;
-
-    let advanceAmount = emi * advance;
-    let processingFee = (loanAmount * processing) / 100;
-    let charges = processingFee + doc + stamp + handling;
-
-    let baseDown = userDown - charges - advanceAmount;
-    finance = price - baseDown;
-
-    if (finance < 0) finance = 0;
-  }
-
-  document.getElementById("finance").value = finance.toFixed(2);
-
-  let loanAmount = finance + addon;
-  let processingFee = (loanAmount * processing) / 100;
-
-  let A = processingFee + 200 + 530 + 1800;
-  let B = finance - A;
-
-  document.getElementById("valA").innerText = A.toFixed(2);
-  document.getElementById("valB").innerText = B.toFixed(2);
-}
-
-function calculateAll() {
-
-  let tenures = [12, 18, 24, 30, 36, 60];
-
-  let finance = +financeEl().value || 0;
-  let addon = +addonEl().value || 0;
-  let rate = +rateEl().value || 0;
-
-  let output = "";
-
-  tenures.forEach(t => {
-
-    let loanAmount = finance + addon;
-
-    let interest = (loanAmount * rate * t) / (100 * 12);
-    let total = loanAmount + interest;
-    let emi = total / t;
-
-    output += `
-      <div class="p-3 rounded-xl border bg-white dark:bg-gray-700 dark:border-gray-600 text-center shadow-sm">
-        <b class="text-base">${t} Months</b><br>
-        EMI: ₹${emi.toFixed(0)} <br>
-        Interest: ₹${interest.toFixed(0)} <br>
-        Total: ₹${total.toFixed(0)}
-      </div>
-    `;
-  });
-
-  document.getElementById("tenureResults").innerHTML = output;
-}
-
-// helpers
-const priceEl = () => document.getElementById("price");
-const downEl = () => document.getElementById("downInput");
-const financeEl = () => document.getElementById("finance");
-const addonEl = () => document.getElementById("addon");
-const rateEl = () => document.getElementById("rate");
-const advEl = () => document.getElementById("advance");
-const procEl = () => document.getElementById("processing");
-const docEl = () => document.getElementById("doc");
-const stampEl = () => document.getElementById("stamp");
-const handEl = () => document.getElementById("handling");
-
-function resetForm() {
-  location.reload();
-}
-
-updateFinance();
-
-</script>
-
-</body>
-</html></div>
-
-<script>
-
-function updateFinance() {
-  let price = +priceEl().value || 0;
-  let userDown = +downEl().value || 0;
-
-  let addon = +addonEl().value || 0;
-  let rate = +rateEl().value || 0;
-  let advance = +advEl().value || 0;
-  let processing = +procEl().value || 0;
-  let doc = +docEl().value || 0;
-  let stamp = +stampEl().value || 0;
-  let handling = +handEl().value || 0;
-
-  let tenure = 12;
-  let finance = price;
-
-  for (let i = 0; i < 3; i++) {
-    let loanAmount = finance + addon;
-
-    let interest = (loanAmount * rate * tenure) / (100 * 12);
-    let emi = (loanAmount + interest) / tenure;
-
-    let advanceAmount = emi * advance;
-    let processingFee = (loanAmount * processing) / 100;
-    let charges = processingFee + doc + stamp + handling;
-
-    let baseDown = userDown - charges - advanceAmount;
-    finance = price - baseDown;
-
-    if (finance < 0) finance = 0;
-  }
-
-  document.getElementById("finance").value = finance.toFixed(2);
-
-  let loanAmount = finance + addon;
-  let processingFee = (loanAmount * processing) / 100;
-
-  let A = processingFee + 200 + 530 + 1800;
-  let B = finance - A;
-
-  document.getElementById("valA").innerText = A.toFixed(2);
-  document.getElementById("valB").innerText = B.toFixed(2);
-}
-
-function calculateAll() {
-
-  let tenures = [12, 18, 24, 30, 36, 60];
-
-  let finance = +financeEl().value || 0;
-  let addon = +addonEl().value || 0;
-  let rate = +rateEl().value || 0;
-
-  let output = "";
-
-  tenures.forEach(t => {
-
-    let loanAmount = finance + addon;
-
-    let interest = (loanAmount * rate * t) / (100 * 12);
-    let total = loanAmount + interest;
-    let emi = total / t;
-
-    output += `
-      <div class="p-4 rounded-xl border bg-white dark:bg-gray-700 dark:border-gray-600 text-center shadow-sm">
+      <div class="p-4 rounded-xl border bg-white dark:bg-gray-700 text-center shadow">
         <b class="text-lg">${t} Months</b><br>
         EMI: ₹${emi.toFixed(0)} <br>
         Interest: ₹${interest.toFixed(0)} <br>
