@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Enable dark mode (class based) -->
+<script>
+  tailwind.config = {
+    darkMode: 'class'
+  }
+</script>
+
+<title>Flat Interest EMI Calculator</title>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+
+<div class="text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400 text-center mt-6 mb-6">
+  Flat Interest Loan Calculator
+</div>
+
+<div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-4 md:p-6 rounded-2xl shadow-lg transition-colors">
+
+  <!-- GRID -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+    <div>
+      <label class="block text-sm font-semibold mb-1">Price</label>
+      <input class="w-full p-2 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600" type="number" id="price" value="80000" oninput="updateFinance()">
+    </div>
+
+    <div>
+      <label class="block text-sm font-semibold mb-1">Down Payment</label>
+      <input class="w-full p-2 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600" type="number" id="downInput" value="20000" oninput="updateFinance()">
+    </div>
+
+    <div>
+      <label class="block text-sm font-semibold mb-1">Finance (Auto)</label>
+      <input class="w-full p-2 border rounded-lg bg-gray-100 dark:bg-gray-600" type="number" id="finance" >
+    </div>
+
+    <div>
+      <label class="block text-sm font-semibold mb-1">Add on Loan</label>
+      <input class="w-full p-2 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600" type="number" id="addon" value="1800" oninput="updateFinance()">
+    </div>
+
+    <div>
+      <label class="block text-sm font-semibold mb-1">Rate (%)</label>
+      <input class="w-full p-2 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600" type="number" id="rate" value="11.55" oninput="updateFinance()">
+    </div>
+
+    <div style="visibility: hidden;">
+      <label class="block text-sm font-semibold mb-1">Advance EMI</label>
+      <input class="w-full p-2 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600" type="number" id="advance" value="0" oninput="updateFinance()">
+    </div>
+
+    <div>
+      <label class="block text-sm font-semibold mb-1">Processing (%)</label>
+      <input class="w-full p-2 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600" type="number" id="processing" value="5" oninput="updateFinance()">
+    </div>
+
+    <div>
+      <label class="block text-sm font-semibold mb-1">Doc Charges</label>
+      <input class="w-full p-2 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600" type="number" id="doc" value="1500" oninput="updateFinance()">
+    </div>
+
+    <div>
+      <label class="block text-sm font-semibold mb-1">Stamp</label>
+      <input class="w-full p-2 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600" type="number" id="stamp" value="200" oninput="updateFinance()">
+    </div>
+
+    <div>
+      <label class="block text-sm font-semibold mb-1">Handling</label>
+      <input class="w-full p-2 border rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600" type="number" id="handling" value="0" oninput="updateFinance()">
+    </div>
+
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="flex flex-col sm:flex-row gap-3 mt-6">
+    <button onclick="calculateAll()" class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg transition">
+      Calculate All
+    </button>
+
+    <button onclick="resetForm()" class="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg transition">
+      Reset
+    </button>
+  </div>
+
+  <!-- EXTRA BOX -->
+  <div class="mt-6 p-4 rounded-xl border bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+    <b class="text-lg">Extra Calculation</b><br><br>
+
+    <div class="flex justify-between">
+      <span>A:</span>
+      <span class="font-semibold">₹<span id="valA">0</span></span>
+    </div>
+
+    <div class="flex justify-between mt-2">
+      <span>B:</span>
+      <span class="font-semibold">₹<span id="valB">0</span></span>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6" id="tenureResults"></div>
+
+</div>
+
+<script>
+
+function updateFinance() {
+  let price = +priceEl().value || 0;
+  let userDown = +downEl().value || 0;
+
+  let addon = +addonEl().value || 0;
+  let rate = +rateEl().value || 0;
+  let advance = +advEl().value || 0;
+  let processing = +procEl().value || 0;
+  let doc = +docEl().value || 0;
+  let stamp = +stampEl().value || 0;
+  let handling = +handEl().value || 0;
+
+  let tenure = 12;
+  let finance = price;
+
+  for (let i = 0; i < 3; i++) {
+    let loanAmount = finance + addon;
+
+    let interest = (loanAmount * rate * tenure) / (100 * 12);
+    let emi = (loanAmount + interest) / tenure;
+
+    let advanceAmount = emi * advance;
+    let processingFee = (loanAmount * processing) / 100;
+    let charges = processingFee + doc + stamp + handling;
+
+    let baseDown = userDown - charges - advanceAmount;
+    finance = price - baseDown;
+
+    if (finance < 0) finance = 0;
+  }
+
+  document.getElementById("finance").value = finance.toFixed(2);
+
+  let loanAmount = finance + addon;
+  let processingFee = (loanAmount * processing) / 100;
+
+  let A = processingFee + 200 + 530 + 1800;
+  let B = finance - A;
+
+  document.getElementById("valA").innerText = A.toFixed(2);
+  document.getElementById("valB").innerText = B.toFixed(2);
+}
+
+function calculateAll() {
+
+  let tenures = [12, 18, 24, 30, 36, 60];
+
+  let finance = +financeEl().value || 0;
+  let addon = +addonEl().value || 0;
+  let rate = +rateEl().value || 0;
+
+  let output = "";
+
+  tenures.forEach(t => {
+
+    let loanAmount = finance + addon;
+
+    let interest = (loanAmount * rate * t) / (100 * 12);
+    let total = loanAmount + interest;
+    let emi = total / t;
+
+    output += `
+      <div class="p-4 rounded-xl border bg-white dark:bg-gray-700 dark:border-gray-600 text-center shadow-sm">
+        <b class="text-lg">${t} Months</b><br>
+        EMI: ₹${emi.toFixed(0)} <br>
+        Interest: ₹${interest.toFixed(0)} <br>
+        Total: ₹${total.toFixed(0)}
+      </div>
+    `;
+  });
+
+  document.getElementById("tenureResults").innerHTML = output;
+}
+
+// helpers
+const priceEl = () => document.getElementById("price");
+const downEl = () => document.getElementById("downInput");
+const financeEl = () => document.getElementById("finance");
+const addonEl = () => document.getElementById("addon");
+const rateEl = () => document.getElementById("rate");
+const advEl = () => document.getElementById("advance");
+const procEl = () => document.getElementById("processing");
+const docEl = () => document.getElementById("doc");
+const stampEl = () => document.getElementById("stamp");
+const handEl = () => document.getElementById("handling");
+
+function resetForm() {
+  location.reload();
+}
+
+updateFinance();
+
+</script>
+
+</body>
+</html>
