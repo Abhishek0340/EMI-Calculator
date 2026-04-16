@@ -1,12 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 
-<!-- FIX: Prevent zoom on mobile -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<!-- Tailwind -->
 <script src="https://cdn.tailwindcss.com"></script>
 
 <script>
@@ -20,79 +19,141 @@ tailwind.config = {
 
 <body class="bg-gradient-to-br from-indigo-100 via-white to-purple-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-x-hidden">
 
-<div class="max-w-md mx-auto p-4">
+<div class="w-full">
 
-  <!-- HEADER -->
-  <div class="text-center mb-6">
+  <div class="text-center mb-6 mt-6">
     <h1 class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white">💎 EMI Calculator</h1>
     <p class="text-base text-gray-500">Premium Finance Tool</p>
   </div>
 
-  <!-- CARD -->
-  <div class="backdrop-blur-lg bg-white/70 dark:bg-white/10 border border-white/30 dark:border-white/10 shadow-xl rounded-2xl p-5">
+  <div class="backdrop-blur-lg  dark:bg-white/10 border border-white/30 dark:border-white/10 shadow-xl rounded-2xl p-5">
 
-    <div class="space-y-5">
+    <div class="space-y-4">
 
-      <!-- INPUT -->
-      <div>
-        <label class="text-lg font-semibold text-gray-700 dark:text-gray-300">Price</label>
-        <input type="number" id="price" oninput="updateFinance()"
-        class="w-full mt-2 p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-400 outline-none">
+      <!-- INPUTS -->
+
+      <div class="relative">
+        <input type="number" id="price" placeholder=" " oninput="updateFinance()"
+        class="peer w-full p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-400 outline-none">
+        <label for="price"
+        class="absolute left-4 top-4 text-gray-500 dark:text-gray-400 transition-all
+        peer-placeholder-shown:top-4 peer-placeholder-shown:text-base
+        peer-focus:top-1 peer-focus:text-sm peer-focus:text-indigo-500
+        peer-[&:not(:placeholder-shown)]:top-1
+        peer-[&:not(:placeholder-shown)]:text-sm">
+        Price
+        </label>
       </div>
 
-      <div>
-        <label class="text-lg font-semibold text-gray-700 dark:text-gray-300">Down Payment</label>
-        <input type="number" id="downInput" oninput="updateFinance()"
-        class="w-full mt-2 p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-400 outline-none">
+      <div class="relative">
+        <input type="number" id="downInput" placeholder=" " oninput="updateFinance()"
+        class="peer w-full p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-indigo-400 outline-none">
+        <label for="downInput"
+        class="absolute left-4 top-4 text-gray-500 dark:text-gray-400 transition-all
+        peer-placeholder-shown:top-4 peer-placeholder-shown:text-base
+        peer-focus:top-1 peer-focus:text-sm peer-focus:text-indigo-500
+        peer-[&:not(:placeholder-shown)]:top-1
+        peer-[&:not(:placeholder-shown)]:text-sm">
+        Down Payment
+        </label>
       </div>
 
-      <div>
-        <label class="text-lg font-semibold text-gray-700 dark:text-gray-300">Finance</label>
+      <div class="grid grid-cols-2 gap-3">
+      <div class="relative">
         <input type="number" id="finance"
-        class="w-full mt-2 p-4 text-lg rounded-xl bg-gray-200 dark:bg-gray-600 border border-gray-300 dark:border-gray-600">
+        class="peer w-full p-4 text-lg rounded-xl bg-gray-200 dark:bg-gray-600 border border-gray-300 dark:border-gray-600">
+        <label class="absolute left-4 top-1 text-sm text-gray-500">
+        Finance
+        </label>
       </div>
 
-      <div>
-        <label class="text-lg font-semibold text-gray-700 dark:text-gray-300">Add on Loan</label>
-        <input type="number" id="addon" value="1800" oninput="updateFinance()"
-        class="w-full mt-2 p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600">
+      <div class="relative">
+        <input type="number" id="addon" value="1800" placeholder=" " oninput="updateFinance()"
+        class="peer w-full p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600">
+        <label for="addon"
+        class="absolute left-4 top-4 text-gray-500 dark:text-gray-400 transition-all
+        peer-placeholder-shown:top-4 peer-placeholder-shown:text-base
+        peer-focus:top-1 peer-focus:text-sm peer-focus:text-indigo-500
+        peer-[&:not(:placeholder-shown)]:top-1
+        peer-[&:not(:placeholder-shown)]:text-sm">
+        Add on Loan
+        </label>
+      </div>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+
+      <div class="relative">
+        <input type="number" id="rate" value="11.55" placeholder=" " oninput="updateFinance()"
+        class="peer w-full p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600">
+        <label for="rate"
+        class="absolute left-4 top-4 text-gray-500 dark:text-gray-400 transition-all
+        peer-placeholder-shown:top-4 peer-placeholder-shown:text-base
+        peer-focus:top-1 peer-focus:text-sm peer-focus:text-indigo-500
+        peer-[&:not(:placeholder-shown)]:top-1
+        peer-[&:not(:placeholder-shown)]:text-sm">
+        Rate (%)
+        </label>
       </div>
 
-      <div>
-        <label class="text-lg font-semibold text-gray-700 dark:text-gray-300">Rate (%)</label>
-        <input type="number" id="rate" value="11.55" oninput="updateFinance()"
-        class="w-full mt-2 p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border border-gray-300 dark:border-gray-600">
-      </div>
-
-      <!-- Hidden -->
       <div style="display:none;">
         <input type="number" id="advance" value="0" oninput="updateFinance()">
       </div>
 
-      <div>
-        <label class="text-base font-medium text-gray-600 dark:text-gray-300">Processing (%)</label>
-        <input type="number" id="processing" value="5" oninput="updateFinance()"
-        class="w-full mt-2 p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border">
+      <div class="relative">
+        <input type="number" id="processing" value="5" placeholder=" " oninput="updateFinance()"
+        class="peer w-full p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border">
+        <label for="processing"
+        class="absolute left-4 top-4 text-gray-500 dark:text-gray-400 transition-all
+        peer-placeholder-shown:top-4 peer-placeholder-shown:text-base
+        peer-focus:top-1 peer-focus:text-sm peer-focus:text-indigo-500
+        peer-[&:not(:placeholder-shown)]:top-1
+        peer-[&:not(:placeholder-shown)]:text-sm">
+        Processing (%)
+        </label>
+      </div>
       </div>
 
       <div class="grid grid-cols-2 gap-3">
-        <div>
-          <label class="text-base text-gray-600 dark:text-gray-300">Doc</label>
-          <input type="number" id="doc" value="1500" oninput="updateFinance()"
-          class="w-full mt-2 p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border">
+
+        <div class="relative">
+          <input type="number" id="doc" value="1500" placeholder=" " oninput="updateFinance()"
+          class="peer w-full p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border">
+          <label for="doc"
+          class="absolute left-4 top-4 text-gray-500 dark:text-gray-400 transition-all
+          peer-placeholder-shown:top-4 peer-placeholder-shown:text-base
+          peer-focus:top-1 peer-focus:text-sm peer-focus:text-indigo-500
+          peer-[&:not(:placeholder-shown)]:top-1
+          peer-[&:not(:placeholder-shown)]:text-sm">
+          Doc
+          </label>
         </div>
 
-        <div>
-          <label class="text-base text-gray-600 dark:text-gray-300">Stamp</label>
-          <input type="number" id="stamp" value="200" oninput="updateFinance()"
-          class="w-full mt-2 p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border">
+        <div class="relative">
+          <input type="number" id="stamp" value="200" placeholder=" " oninput="updateFinance()"
+          class="peer w-full p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border">
+          <label for="stamp"
+          class="absolute left-4 top-4 text-gray-500 dark:text-gray-400 transition-all
+          peer-placeholder-shown:top-4 peer-placeholder-shown:text-base
+          peer-focus:top-1 peer-focus:text-sm peer-focus:text-indigo-500
+          peer-[&:not(:placeholder-shown)]:top-1
+          peer-[&:not(:placeholder-shown)]:text-sm">
+          Stamp
+          </label>
         </div>
+
       </div>
 
-      <div>
-        <label class="text-base text-gray-600 dark:text-gray-300">Handling</label>
-        <input type="number" id="handling" value="0" oninput="updateFinance()"
-        class="w-full mt-2 p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border">
+      <div class="relative">
+        <input type="number" id="handling" value="0" placeholder=" " oninput="updateFinance()"
+        class="peer w-full p-4 text-lg rounded-xl bg-white/60 dark:bg-gray-700/60 border">
+        <label for="handling"
+        class="absolute left-4 top-4 text-gray-500 dark:text-gray-400 transition-all
+        peer-placeholder-shown:top-4 peer-placeholder-shown:text-base
+        peer-focus:top-1 peer-focus:text-sm peer-focus:text-indigo-500
+        peer-[&:not(:placeholder-shown)]:top-1
+        peer-[&:not(:placeholder-shown)]:text-sm">
+        Handling
+        </label>
       </div>
 
     </div>
@@ -100,17 +161,16 @@ tailwind.config = {
     <!-- BUTTONS -->
     <div class="flex gap-3 mt-6">
       <button onclick="calculateAll()"
-      class="flex-1 py-4 text-lg rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold shadow-lg">
+      class="flex-1 py-4 text-xl rounded-xl bg-gradient-to-r from-red-200 to-pink-200 text-gray-800 font-semibold shadow-lg">
         Calculate
       </button>
 
       <button onclick="resetForm()"
-      class="flex-1 py-4 text-lg rounded-xl bg-gradient-to-r from-red-500 to-pink-500 text-white font-semibold shadow-lg">
+      class="flex-1 py-4 text-xl rounded-xl bg-gradient-to-r from-indigo-200 to-purple-400 text-gray-800 font-semibold shadow-lg">
         Reset
       </button>
     </div>
 
-    <!-- EXTRA -->
     <div class="mt-6 p-4 rounded-xl bg-white/50 dark:bg-gray-700/50 border text-base">
       <div class="flex justify-between">
         <span>A</span>
@@ -123,8 +183,7 @@ tailwind.config = {
       </div>
     </div>
 
-    <!-- RESULTS -->
-    <div class="grid gap-4 mt-6" id="tenureResults"></div>
+    <div class="grid gap-2 mt-6" id="tenureResults"></div>
 
   </div>
 </div>
@@ -182,26 +241,38 @@ function calculateAll() {
   let finance = +financeEl().value || 0;
   let addon = +addonEl().value || 0;
   let rate = +rateEl().value || 0;
+  let output = `<div class="">`;
 
-  let output = "";
+tenures.forEach(t => {
+  let loanAmount = finance + addon;
 
-  tenures.forEach(t => {
-    let loanAmount = finance + addon;
+  let interest = (loanAmount * rate * t) / (100 * 12);
+  let total = loanAmount + interest;
+  let emi = total / t;
 
-    let interest = (loanAmount * rate * t) / (100 * 12);
-    let total = loanAmount + interest;
-    let emi = total / t;
+  output += `
+    <div class="flex gap-4 overflow-x-auto">
 
-    output += `
-      <div class="p-4 rounded-xl border bg-white dark:bg-gray-700 text-center shadow">
-        <b class="text-lg">${t} Months</b><br>
-        EMI: ₹${emi.toFixed(0)} <br>
-        Interest: ₹${interest.toFixed(0)} <br>
-        Total: ₹${total.toFixed(0)}
+      <div class=" w-80 border rounded block m-auto mt-2 mb-2 p-2">
+      <div class="text-center text-bold text-lg text-gray-900 mb-2 mt-2">${t} Months EMI <span class="text-green-700 text-lg text-semibold"> ₹${emi.toFixed(0)} </span></div>
+
+      
+
+      <div class="text-center">
+        
+          <span>Interest</span>
+          <span>₹${interest.toFixed(0)}</span>
+          <span>Total</span>
+          <span class="font-semibold">₹${total.toFixed(0)}</span>
+        
       </div>
-    `;
-  });
+      </div>
 
+    </div>
+  `;
+});
+
+output += `</div>`;
   document.getElementById("tenureResults").innerHTML = output;
 }
 
